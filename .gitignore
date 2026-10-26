@@ -1,0 +1,11 @@
+.env
+data/
+__pycache__/
+*.py[cod]
+.venv/
+*.bak
+*.before-*
+data/*.sqlite3
+data/*.db
+.before_priority.bak
+apply_priority_patch.py

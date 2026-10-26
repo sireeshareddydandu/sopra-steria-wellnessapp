@@ -1,0 +1,35 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Workplace Wellness | Admin Portal</title>
+<meta name="csrf-token" content="{{ csrf_token }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="admin-page">
+<header class="topbar">
+<a class="brand" href="/"><span class="brand-mark">W</span><span>Workplace <span class="brand-muted">Wellness</span></span></a>
+<div class="top-actions">
+<a class="quiet-link" href="/submit">Employee submission portal</a>
+<a class="quiet-link" href="/track">Track a ticket</a>
+<form method="post" action="/admin/logout" id="logout-form"><button class="quiet-button" type="submit">Sign out</button></form>
+</div>
+</header>
+<main class="dashboard-wrap">
+<div class="dashboard-heading"><div><p class="small-overline">WORKPLACE WELLNESS / ADMIN</p><h1>Ticket management</h1><p class="muted">Review safety concerns, update ticket status, and communicate progress.</p></div><div class="status-pill"><span class="dot"></span> Admin workspace</div></div>
+<div id="toast" class="toast hidden" role="status"></div>
+<section id="responses-panel" class="responses-panel">
+<div class="panel-card">
+<div class="panel-heading response-heading"><div><h2>Submitted tickets</h2><p id="responses-caption" class="muted">Review and manage employee tickets.</p></div><div class="response-actions"><a href="/admin/export.csv" class="button button-secondary">Export CSV</a><button id="refresh-responses" class="button button-primary" type="button">Refresh tickets</button></div></div>
+<div class="response-search"><input id="response-search" placeholder="Search tickets..." aria-label="Search tickets"><span id="response-summary" class="muted small-text"></span></div>
+<div id="responses-container"><div class="loading-state">Loading tickets...</div></div>
+</div>
+</section>
+<footer class="dashboard-footer"><span>Workplace Wellness</span><span>Ticket management portal</span></footer>
+</main>
+<script>window.ADMIN_CSRF={{ csrf_token|tojson }};</script>
+<script src="{{ url_for('static', filename='admin_ticket_draft.js') }}" defer></script>
+</body>
+</html>
+
