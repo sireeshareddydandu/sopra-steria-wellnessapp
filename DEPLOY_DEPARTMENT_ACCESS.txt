@@ -1,0 +1,24 @@
+DEPLOY DEPARTMENT-WISE ADMIN ACCESS
+
+1) Replace app.py, templates/department_admin.html, static/department_admin.js in your project with the matching files in this package. Other project files are included unchanged from the latest supplied project archive. Do not copy any local .env or data/database files.
+
+2) In Render > your service > Environment, set:
+ADMIN_USERNAME = a unique super-admin username
+ADMIN_PASSWORD = a long unique super-admin password
+SECRET_KEY = a long random secret (32+ random bytes)
+COOKIE_SECURE = 1
+DEPARTMENT_ADMINS = one-line JSON, for example:
+{"hr":{"username":"hr_admin","password":"UNIQUE_LONG_HR_PASSWORD","department":"HR"},"facilities":{"username":"facilities_admin","password":"UNIQUE_LONG_FACILITIES_PASSWORD","department":"Facilities"},"transport":{"username":"transport_admin","password":"UNIQUE_LONG_TRANSPORT_PASSWORD","department":"Transport"},"it":{"username":"it_admin","password":"UNIQUE_LONG_IT_PASSWORD","department":"IT"}}
+
+Replace every example password with a different strong password. Do not use the example passwords. Department values must match the value employees enter in the form's Project Name/Department Name field (case, spaces, and punctuation are normalized). Add every department that needs its own account.
+
+3) Render Build Command: pip install -r requirements.txt
+Render Start Command: gunicorn app:app
+Commit/push the code to the GitHub branch connected to Render; wait for a successful deployment.
+
+4) URLs:
+Super admin: https://sopra-steria-wellnessapp.onrender.com/admin
+Department dashboard: /admin/hr, /admin/facilities, /admin/transport, /admin/it (based on the sample config above)
+Login: https://sopra-steria-wellnessapp.onrender.com/admin/login
+
+Security notes: department admins are filtered server-side by project_department_name; the API and ticket update/comment endpoints also check ownership. Super admin retains all-department access. Test each account in a private/incognito browser before sharing. Keep .env and the SQLite database out of Git. Render's default local filesystem is ephemeral: configure persistent storage or an external database before storing real workplace records.

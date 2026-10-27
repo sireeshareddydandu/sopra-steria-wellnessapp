@@ -1,0 +1,27 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workplace Wellness</title><meta name="theme-color" content="#176b57"><link rel="manifest" href="{{ url_for('pwa_manifest') }}"><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="public-page">
+  <header class="topbar"><a class="brand" href="/" aria-label="Workplace Wellness home"><img class="brand-logo" src="{{ url_for('static', filename='logo.png') }}" alt="Sopra Steria" /></a><nav style="display:flex;gap:16px;align-items:center"><a class="quiet-link" href="/track">Track my concern</a><a class="quiet-link" href="/admin/login">Admin portal</a></nav></header>
+  <main class="public-wrap">
+    <div class="eyebrow"><span class="dot"></span> WORKPLACE WELLNESS &amp; SAFETY</div>
+    <section class="form-card">
+      <div class="form-accent"></div>
+      <div id="form-loading" class="loading-state">Loading formâ€¦</div>
+      <div id="form-empty" class="empty-state hidden"><div class="empty-icon">âœ³</div><h1>This form is not set up yet</h1><p>The administrator needs to add the questions before responses can be submitted.</p><a class="button button-secondary" href="/admin">Open form setup</a></div>
+      <form id="response-form" class="hidden" novalidate>
+        <div class="form-intro"><p class="small-overline">RESPONSE FORM</p><h1 id="form-title"></h1><p id="form-description" class="muted"></p><p class="required-note"><span class="required-star">*</span> Required field</p></div>
+        <div id="fields-container" class="fields-container"></div>
+        <div id="form-error" class="alert alert-error hidden" role="alert"></div>
+        <div class="form-actions"><button id="submit-button" class="button button-primary" type="submit">Submit response <span aria-hidden="true">â†’</span></button><p class="privacy-note">Your response is saved securely for the form administrator.</p></div>
+      </form>
+      <div id="success-state" class="success-state hidden"><div class="success-icon">âœ“</div><h1>Response submitted</h1><p id="success-message" class="muted"></p><p id="submitted-at" class="muted small-text"></p><div class="form-actions"><a id="download-receipt" class="button button-primary hidden" href="#">Download my submission (CSV) â†“</a><button id="another-response" class="button button-secondary">Submit another response</button></div><p class="privacy-note">Keep your download link private. It grants access only to this submission.</p></div>
+    </section>
+    <footer class="page-footer">Workplace Wellness <span>â€¢</span> Health & Safety</footer>
+  </main>
+  <script src="{{ url_for('static', filename='public.js') }}" defer></script><script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/service-worker.js').catch(()=>{});</script>
+</body></html>
+

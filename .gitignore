@@ -1,0 +1,16 @@
+.env
+data/
+__pycache__/
+*.py[cod]
+.venv/
+*.bak
+*.before-*
+
+# Local test data and databases
+local_test_data/
+*.sqlite
+*.sqlite3
+*.db
+
+# Local backup files
+app.py.priority-backup
